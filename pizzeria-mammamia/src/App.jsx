@@ -3,6 +3,8 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import CardPizza from "./components/CardPizza";
 import Footer from "./components/Footer";
+import Register from "./components/Register";
+import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -10,7 +12,9 @@ function App() {
   return (
     <>
       <NavBar />
-      <Home />
+      <Register />
+      {/* <Login /> */}
+      {/* <Home />
       <div className="wrapper row justify-content-center">
         <CardPizza
           name="Napolitana"
@@ -30,7 +34,7 @@ function App() {
           ingredients={["peperoni", "queso", "aceitunas", "orégano"]}
           img="https://cdn.pixabay.com/photo/2020/08/19/14/42/pizza-5501057_1280.jpg"
         />
-      </div>
+      </div> */}
       <Footer />
     </>
   );
