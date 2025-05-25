@@ -120,3 +120,93 @@ button:focus-visible {
 .tbtn:hover {
   background-color: #23272b;
 }
+
+.ingredients {
+  list-style-type: none;
+}
+
+.cart-title {
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin: 2rem 0;
+}
+
+.shopping-cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  margin: 0.5rem auto;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+}
+
+.img-pizza {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #e9ecef;
+}
+
+.name-pizza {
+  min-width: 150px;
+  font-weight: bold;
+  margin: 0;
+  color: #212529;
+}
+
+.price-pizza {
+  min-width: 80px;
+  font-weight: bold;
+  margin: 0;
+  color: #495057;
+}
+
+.pizza-count {
+  min-width: 50px;
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+}
+
+.btn-outline-danger,
+.btn-outline-primary {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20% !important;
+  padding: 0;
+}
+
+.total {
+  text-align: center;
+  font-weight: bold;
+  color: #212529;
+  margin-top: 2rem !important;
+}
+
+.pay-button {
+  text-align: center;
+  display: flex !important;
+}
+
+.btn-dark {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  font-weight: bold;
+}

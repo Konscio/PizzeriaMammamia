@@ -3,7 +3,7 @@ import Boton from "./Boton";
 
 function CardPizza({ img, name, ingredients, price }) {
   return (
-    <div className="col-lg-4 col-md-6 col-sm-12 mb-5">
+    <div>
       <div className="card h-100" style={{ width: "90%" }}>
         <img src={img} className="card-img-top" alt="..." />
         <div className="card-body">
@@ -11,7 +11,14 @@ function CardPizza({ img, name, ingredients, price }) {
         </div>
         <ul className="list-group list-group-flush text-center">
           <li className="list-group-item">
-            Ingredientes: {ingredients.join(", ")}.
+            <h4>Ingredientes:</h4>
+            <ul>
+              {ingredients.map((index, ingredient) => (
+                <li className="ingredients" key={ingredient}>
+                  {index}
+                </li>
+              ))}
+            </ul>
           </li>
           <li className="list-group-item fs-4">Precio: ${price}</li>
         </ul>
