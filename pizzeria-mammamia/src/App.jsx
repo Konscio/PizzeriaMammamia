@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Cart from "./components/Cart";
+import Pizza from "./components/Pizza";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* <Formulario /> */}
       {/* <Login /> */}
       {/* <Home /> */}
-      <Cart />
+      {/* <Cart /> */}
+      <Pizza />
       <Footer />
     </>
   );
