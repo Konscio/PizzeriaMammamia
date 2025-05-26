@@ -14,8 +14,8 @@ function App() {
       <NavBar />
       {/* <Formulario /> */}
       {/* <Login /> */}
-      <Home />
-      {/* <Cart /> */}
+      {/* <Home /> */}
+      <Cart />
       <Footer />
     </>
   );
