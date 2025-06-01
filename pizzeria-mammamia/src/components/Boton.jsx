@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
 
-const Boton = ({ colorButton, textButton }) => {
+function Boton({ colorButton, textButton, onClick }) {
   return (
-    <>
-      <Button variant={colorButton}>{textButton}</Button>
-    </>
+    <button className={colorButton} onClick={onClick}>
+      {textButton}
+    </button>
   );
-};
+}
 export default Boton;

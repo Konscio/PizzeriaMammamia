@@ -1,11 +1,24 @@
 import React from "react";
 import Boton from "./Boton";
+import { useCart } from "../context/CartContext";
 
-function CardPizza({ img, name, ingredients, price }) {
+function CardPizza({ id, img, name, ingredients, price }) {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      img,
+      name,
+      price,
+      count: 1,
+    });
+  };
+
   return (
     <div>
       <div className="card h-100" style={{ width: "90%" }}>
-        <img src={img} className="card-img-top" alt="..." />
+        <img src={img} className="card-img-top" alt={name} />
         <div className="card-body">
           <h5
             className="card-title fs-3"
@@ -18,9 +31,9 @@ function CardPizza({ img, name, ingredients, price }) {
           <li className="list-group-item">
             <h4>Ingredientes:</h4>
             <ul>
-              {ingredients.map((index, ingredient) => (
-                <li className="ingredients" key={ingredient}>
-                  {index}
+              {ingredients.map((ingredient, index) => (
+                <li className="ingredients" key={index}>
+                  {ingredient}
                 </li>
               ))}
             </ul>
@@ -32,7 +45,11 @@ function CardPizza({ img, name, ingredients, price }) {
             <Boton colorButton="btn btn-light" textButton="Ver más"></Boton>
           </a>
           <a href="#" className="card-link">
-            <Boton colorButton="btn btn-dark" textButton="Añadir"></Boton>
+            <Boton
+              colorButton="btn btn-dark"
+              textButton="Añadir"
+              onClick={handleAddToCart}
+            ></Boton>
           </a>
         </div>
       </div>

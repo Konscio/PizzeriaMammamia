@@ -153,6 +153,15 @@ button:focus-visible {
   width: 90%;
 }
 
+.cart-actions,
+.pay-button {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0 !important;
+}
+
 .img-pizza {
   width: 150px;
   height: 100px;
@@ -197,11 +206,6 @@ button:focus-visible {
   font-weight: bold;
   color: #212529;
   margin-top: 2rem !important;
-}
-
-.pay-button {
-  text-align: center;
-  display: flex !important;
 }
 
 .btn-dark {

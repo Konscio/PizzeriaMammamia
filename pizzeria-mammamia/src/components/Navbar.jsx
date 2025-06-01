@@ -1,8 +1,10 @@
 import Boton from "./Boton";
+import PriceFormatter from "../Utils/PriceFormatter";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function NavBar() {
-  const total = 25000;
+  const { total } = useCart();
   const token = true;
 
   if (token) {
@@ -52,7 +54,7 @@ function NavBar() {
             <li className="nav-item">
               <Link to={"/cart"} className="text-decoration-none">
                 <span className="navbar-text text-light">
-                  Total $ {total.toLocaleString()}
+                  Total <PriceFormatter precio={total} />
                 </span>
               </Link>
             </li>
