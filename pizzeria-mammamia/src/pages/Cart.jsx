@@ -2,9 +2,22 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import PriceFormatter from "../Utils/PriceFormatter";
 import { useCart } from "../context/CartContext";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, increaseCount, decreaseCount, total, clearCart } = useCart();
+  const { token } = useUser();
+  const navigate = useNavigate();
+
+  const handlePayment = () => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    alert("Procesando pago...");
+  };
 
   return (
     <>
@@ -49,9 +62,13 @@ const Cart = () => {
               <i className="bi bi-trash-fill me-2"></i>
               Vaciar Carrito
             </Button>
-            <Button className="pay-button btn-lg" variant="dark">
+            <Button
+              className="pay-button btn-lg"
+              variant="dark"
+              onClick={handlePayment}
+            >
               <i className="bi bi-credit-card-fill me-2"></i>
-              Pagar (<PriceFormatter precio={total} />)
+              {token ? `Pagar` : "Inicia sesión para pagar"}
             </Button>
           </div>
         </>

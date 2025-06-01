@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
-const Formulario = () => {
+const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const { login } = useUser();
+  const navigate = useNavigate();
 
   const validarDatos = (e) => {
     e.preventDefault();
@@ -14,15 +18,18 @@ const Formulario = () => {
     if (password.length < 6) {
       alert("¡La contraseña debe tener al menos 6 digitos!");
       return;
-    } else {
-      alert("¡Bienvenido de vuelta!");
     }
+
+    // Si la validación es exitosa:
+    login();
+    alert("¡Bienvenido de vuelta!");
+    navigate("/");
     setEmail("");
     setPassword("");
   };
 
   return (
-    <div class="formulario mt-4" id="login">
+    <div className="formulario mt-4" id="login">
       <form className="formulario" onSubmit={validarDatos}>
         <div className="form-group">
           <label>Email</label>
@@ -32,6 +39,7 @@ const Formulario = () => {
             className="form-control"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            placeholder="Ingresa tu email"
           />
         </div>
         <div className="form-group">
@@ -42,14 +50,15 @@ const Formulario = () => {
             className="form-control"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            placeholder="Ingresa tu contraseña"
           />
         </div>
-        <button type="submit" className="tbtn btn-dark">
-          Enviar
+        <button type="submit" className="btn btn-dark">
+          Entrar
         </button>
       </form>
     </div>
   );
 };
 
-export default Formulario;
+export default Login;

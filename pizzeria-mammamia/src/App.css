@@ -162,6 +162,16 @@ button:focus-visible {
   margin: 0 !important;
 }
 
+.btn-dark:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.pay-button:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
 .img-pizza {
   width: 150px;
   height: 100px;

@@ -10,26 +10,37 @@ import Cart from "./pages/Cart";
 import Pizza from "./pages/Pizza";
 import NotFound from "./components/NotFound";
 import Profile from "./components/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
     <>
-      <CartProvider>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/pizza/p001" element={<Pizza />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/404" element={<NotFound />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-        <Footer />
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/pizza/:id" element={<Pizza />}></Route>
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/404" element={<NotFound />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
+          <Footer />
+        </CartProvider>
+      </UserProvider>
     </>
   );
 }

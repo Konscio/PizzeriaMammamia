@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
-const Profile = ({ user, onLogout }) => {
+const Profile = () => {
   const navigate = useNavigate();
+  const { user, logout } = useUser();
 
   const handleLogout = () => {
-    if (onLogout) onLogout();
+    logout();
     navigate("/login");
   };
 

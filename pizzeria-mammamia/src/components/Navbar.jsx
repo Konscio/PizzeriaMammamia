@@ -1,11 +1,13 @@
+// src/components/Navbar.jsx
 import Boton from "./Boton";
 import PriceFormatter from "../Utils/PriceFormatter";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useUser } from "../context/UserContext"; // Importamos el hook useUser
 
 function NavBar() {
   const { total } = useCart();
-  const token = true;
+  const { token, logout } = useUser(); // Obtenemos el token y la función logout
 
   if (token) {
     return (
@@ -40,12 +42,11 @@ function NavBar() {
                 </Link>
               </li>
               <li className="nav-item ms-2">
-                <Link to={"/login"}>
-                  <Boton
-                    textButton="Logout"
-                    colorButton="btn btn-outline-light"
-                  />
-                </Link>
+                <Boton
+                  textButton="Logout"
+                  colorButton="btn btn-outline-light"
+                  onClick={logout} // Añadimos el onClick para logout
+                />
               </li>
             </ul>
           </div>
@@ -75,25 +76,47 @@ function NavBar() {
 
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Boton textButton="Home" colorButton="btn btn-outline-light" />
+                <Link to={"/"}>
+                  <Boton
+                    textButton="Home"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
               </li>
               <li className="nav-item ms-2">
-                <Boton textButton="Login" colorButton="btn btn-outline-light" />
+                <Link to={"/profile"}>
+                  <Boton
+                    textButton="Profile"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
               </li>
               <li className="nav-item ms-2">
-                <Boton
-                  textButton="Register"
-                  colorButton="btn btn-outline-light"
-                />
+                <Link to={"/login"}>
+                  <Boton
+                    textButton="Login"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
+              </li>
+              <li className="nav-item ms-2">
+                <Link to={"/register"}>
+                  <Boton
+                    textButton="Register"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
               </li>
             </ul>
           </div>
 
           <ul className="navbar-nav">
             <li className="nav-item">
-              <span className="navbar-text text-light">
-                Total $ {total.toLocaleString()}
-              </span>
+              <Link to={"/cart"} className="text-decoration-none">
+                <span className="navbar-text text-light">
+                  Total <PriceFormatter precio={total} />
+                </span>
+              </Link>
             </li>
           </ul>
         </div>

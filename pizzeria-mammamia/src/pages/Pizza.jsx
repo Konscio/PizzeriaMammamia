@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import PriceFormatter from "../Utils/PriceFormatter";
 import Boton from "../components/Boton";
 
-function DisplayPizza({ pizzaId = "p001" }) {
+function Pizza() {
+  const { id } = useParams(); // Obtenemos el ID de la URL
   const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,7 +41,7 @@ function DisplayPizza({ pizzaId = "p001" }) {
     return <div className="alert alert-danger">{error}</div>;
   }
 
-  const selectedPizza = pizzas.find((pizza) => pizza.id === pizzaId);
+  const selectedPizza = pizzas.find((pizza) => pizza.id === id);
 
   return (
     <div className="d-flex justify-content-center">
@@ -77,7 +80,7 @@ function DisplayPizza({ pizzaId = "p001" }) {
               </ul>
             </li>
             <li className="list-group-item fs-4">
-              Precio: ${selectedPizza.price}
+              Precio: ${<PriceFormatter precio={selectedPizza.price} />}
             </li>
           </ul>
           <div className="card-body text-center">
@@ -90,12 +93,10 @@ function DisplayPizza({ pizzaId = "p001" }) {
           </div>
         </div>
       ) : (
-        <p className="text-center mt-4">
-          No se encontró la pizza con ID: {pizzaId}
-        </p>
+        <p className="text-center mt-4">No se encontró la pizza con ID: {id}</p>
       )}
     </div>
   );
 }
 
-export default DisplayPizza;
+export default Pizza;

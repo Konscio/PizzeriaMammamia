@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Boton from "./Boton";
 import { useCart } from "../context/CartContext";
 
@@ -41,10 +42,10 @@ function CardPizza({ id, img, name, ingredients, price }) {
           <li className="list-group-item fs-4">Precio: ${price}</li>
         </ul>
         <div className="card-body text-center">
-          <a href="#" className="card-link">
+          <Link to={`/pizza/${id}`} className="card-link">
             <Boton colorButton="btn btn-light" textButton="Ver más"></Boton>
-          </a>
-          <a href="#" className="card-link">
+          </Link>
+          <a href="#" className="card-link" onClick={(e) => e.preventDefault()}>
             <Boton
               colorButton="btn btn-dark"
               textButton="Añadir"
