@@ -7,7 +7,12 @@ function CardPizza({ img, name, ingredients, price }) {
       <div className="card h-100" style={{ width: "90%" }}>
         <img src={img} className="card-img-top" alt="..." />
         <div className="card-body">
-          <h5 className="card-title fs-3">Pizza {name}</h5>
+          <h5
+            className="card-title fs-3"
+            style={{ textTransform: "capitalize" }}
+          >
+            Pizza {name}
+          </h5>
         </div>
         <ul className="list-group list-group-flush text-center">
           <li className="list-group-item">

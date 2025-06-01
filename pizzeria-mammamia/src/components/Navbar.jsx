@@ -1,4 +1,5 @@
 import Boton from "./Boton";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const total = 25000;
@@ -6,39 +7,54 @@ function NavBar() {
 
   if (token) {
     return (
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid d-flex justify-content-between">
-          <div class="d-flex">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <p class="navbar-brand mb-0">¡Pizzería Mamma Mia!</p>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div className="container-fluid d-flex justify-content-between">
+          <div className="d-flex">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link to={"/"} className="text-decoration-none">
+                  <p className="navbar-brand mb-0 text-decoration-none">
+                    ¡Pizzería Mamma Mia!
+                  </p>
+                </Link>
               </li>
             </ul>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <Boton textButton="Home" colorButton="btn btn-outline-light" />
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link to={"/"}>
+                  <Boton
+                    textButton="Home"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
               </li>
-              <li class="nav-item ms-2">
-                <Boton
-                  textButton="Profile"
-                  colorButton="btn btn-outline-light"
-                />
+              <li className="nav-item ms-2">
+                <Link to={"/profile"}>
+                  <Boton
+                    textButton="Profile"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
               </li>
-              <li class="nav-item ms-2">
-                <Boton
-                  textButton="Logout"
-                  colorButton="btn btn-outline-light"
-                />
+              <li className="nav-item ms-2">
+                <Link to={"/login"}>
+                  <Boton
+                    textButton="Logout"
+                    colorButton="btn btn-outline-light"
+                  />
+                </Link>
               </li>
             </ul>
           </div>
 
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <span class="navbar-text text-light">
-                Total $ {total.toLocaleString()}
-              </span>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to={"/cart"} className="text-decoration-none">
+                <span className="navbar-text text-light">
+                  Total $ {total.toLocaleString()}
+                </span>
+              </Link>
             </li>
           </ul>
         </div>
@@ -46,23 +62,23 @@ function NavBar() {
     );
   } else {
     return (
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid d-flex justify-content-between">
-          <div class="d-flex">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <p class="navbar-brand mb-0">¡Pizzería Mamma Mia!</p>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div className="container-fluid d-flex justify-content-between">
+          <div className="d-flex">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <p className="navbar-brand mb-0">¡Pizzería Mamma Mia!</p>
               </li>
             </ul>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
                 <Boton textButton="Home" colorButton="btn btn-outline-light" />
               </li>
-              <li class="nav-item ms-2">
+              <li className="nav-item ms-2">
                 <Boton textButton="Login" colorButton="btn btn-outline-light" />
               </li>
-              <li class="nav-item ms-2">
+              <li className="nav-item ms-2">
                 <Boton
                   textButton="Register"
                   colorButton="btn btn-outline-light"
@@ -71,9 +87,9 @@ function NavBar() {
             </ul>
           </div>
 
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <span class="navbar-text text-light">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <span className="navbar-text text-light">
                 Total $ {total.toLocaleString()}
               </span>
             </li>

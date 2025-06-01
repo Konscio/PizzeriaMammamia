@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Boton from "./Boton";
+import Boton from "../components/Boton";
 
 function DisplayPizza({ pizzaId = "p001" }) {
   const [pizzas, setPizzas] = useState([]);

@@ -1,5 +1,5 @@
-import Titulo from "./Header";
-import CardPizza from "./CardPizza";
+import Titulo from "../components/Header";
+import CardPizza from "../components/CardPizza";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -13,7 +13,6 @@ function Home() {
     try {
       const response = await fetch("http://localhost:5000/api/pizzas");
       const data = await response.json();
-      console.log(data);
       setPizzas(data);
     } catch {
       alert("¡Algo salio mal! Recarga la pagina.");
