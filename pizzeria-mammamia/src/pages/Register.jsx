@@ -1,43 +1,63 @@
 import React, { useState } from "react";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
-const Formulario = () => {
+const Register = () => {
   const [password, setPassword] = useState("");
   const [passwordmatch, setPasswordMatch] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { register } = useUser();
+  const navigate = useNavigate();
 
-  const validarDatos = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (password === "" || passwordmatch === "" || email === "") {
-      alert("¡Todos los campos son obligatorios!");
+      setError("¡Todos los campos son obligatorios!");
       return;
     }
     if (password !== passwordmatch) {
-      alert("¡Ambas constraseñas deben coincidir!");
+      setError("¡Ambas contraseñas deben coincidir!");
       return;
     }
     if (password.length < 6) {
-      alert("¡La contraseña debe tener al menos 6 digitos!");
+      setError("¡La contraseña debe tener al menos 6 digitos!");
       return;
-    } else {
-      alert("¡Te registraste exitosamente!");
     }
-    setEmail("");
-    setPassword("");
-    setPasswordMatch("");
+
+    setIsLoading(true);
+    try {
+      await register(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message || "Error al registrar usuario");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div class="formulario mt-4" id="register">
-      <form className="formulario" onSubmit={validarDatos}>
+    <div className="formulario mt-4" id="register">
+      {error && (
+        <Alert variant="danger" onClose={() => setError("")} dismissible>
+          {error}
+        </Alert>
+      )}
+      <form className="formulario" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             className="form-control"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            placeholder="Ingresa tu email"
+            required
           />
         </div>
         <div className="form-group">
@@ -48,6 +68,9 @@ const Formulario = () => {
             className="form-control"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            placeholder="Ingresa tu contraseña"
+            required
+            minLength="6"
           />
         </div>
         <div className="form-group">
@@ -58,14 +81,17 @@ const Formulario = () => {
             className="form-control"
             onChange={(e) => setPasswordMatch(e.target.value)}
             value={passwordmatch}
+            placeholder="Confirma tu contraseña"
+            required
+            minLength="6"
           />
         </div>
-        <button type="submit" className="tbtn btn-dark">
-          Enviar
+        <button type="submit" className="btn btn-dark" disabled={isLoading}>
+          {isLoading ? "Registrando..." : "Registrarse"}
         </button>
       </form>
     </div>
   );
 };
 
-export default Formulario;
+export default Register;

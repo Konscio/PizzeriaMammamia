@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Boton from "./Boton";
+import PriceFormatter from "../Utils/PriceFormatter";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function CardPizza({ id, img, name, ingredients, price }) {
@@ -39,7 +40,9 @@ function CardPizza({ id, img, name, ingredients, price }) {
               ))}
             </ul>
           </li>
-          <li className="list-group-item fs-4">Precio: ${price}</li>
+          <li className="list-group-item fs-4">
+            Precio: <PriceFormatter precio={price} />
+          </li>
         </ul>
         <div className="card-body text-center">
           <Link to={`/pizza/${id}`} className="card-link">

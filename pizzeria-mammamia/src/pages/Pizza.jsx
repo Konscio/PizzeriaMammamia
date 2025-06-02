@@ -4,7 +4,7 @@ import PriceFormatter from "../Utils/PriceFormatter";
 import Boton from "../components/Boton";
 
 function Pizza() {
-  const { id } = useParams(); // Obtenemos el ID de la URL
+  const { id } = useParams();
   const [pizzas, setPizzas] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -80,7 +80,7 @@ function Pizza() {
               </ul>
             </li>
             <li className="list-group-item fs-4">
-              Precio: ${<PriceFormatter precio={selectedPizza.price} />}
+              Precio: {<PriceFormatter precio={selectedPizza.price} />}
             </li>
           </ul>
           <div className="card-body text-center">
